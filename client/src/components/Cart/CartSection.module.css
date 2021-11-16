@@ -1,0 +1,29 @@
+.cartSection {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.cartTable {
+    margin-right: 45px;
+}
+
+.cartCalculate {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media (max-width: 1226px) {
+    .cartSection {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cartTable {
+        margin-right: 0px;
+    }
+    
+}
