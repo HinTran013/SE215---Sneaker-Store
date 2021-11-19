@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Modal from 'react-modal'
 import { Brands } from './BrandData'
+import UserForm from './UserForm'
 import './Navbar.css'
 import './NavbarResponsive.css'
+
+
+Modal.setAppElement('#root')
 
 function Navbar() {
      const [navbar, setNavbar] = useState(false)
      const [navbarMobile, setNavbarMobile] = useState(false)
      const [inputSearch, setInputSearch] = useState(false)
+     const [modalIsOpen, setModalIsOpen] = useState(false)
 
      // change navbar background when scroll
      const changeNavbar = () => {
@@ -79,9 +85,20 @@ function Navbar() {
                               <input className={inputSearch ? 'header__input-search appear' : 'header__input-search'} type='text' placeholder='Search something...' />
                          </div>
                          <i className='far fa-shopping-cart'></i>
-                         <i className='far fa-user'></i>
+                         <div className='header__btn-login'>
+                              <i className='far fa-user' onClick={() => setModalIsOpen(true)} />
+                              <Modal className='ModalReact__Content' overlayClassName='ModalReact__Overlay'
+                                   isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+                              // onAfterOpen={() => { document.body.style.overflow = 'hidden' }}
+                              // onAfterClose={() => { document.body.style.overflow = 'visible' }}
+                              >
+                                   <UserForm></UserForm>
+                                        <a href = 'javascript:void(0)' className='close_btn' onClick={() => setModalIsOpen(false)}>x</a>
+                              </Modal>
+                         </div>
                     </div>
                </div>
+
           </>
      )
 }
