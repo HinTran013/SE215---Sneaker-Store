@@ -5,19 +5,17 @@ import { OneProduct } from "../ProductDetail/ProductData";
 import ProductItem from "../ProductItem/ProductItem";
 import TopFilter from "./TopFilter";
 import Pagination from "./Pagination";
-import { getAllProduct } from '../../api/productAPI'
+import { getAllProduct } from "../../api/productAPI";
 
 function ProductsMainPart(props) {
+  // const [productList, setProductList] = React.useState([]);
 
-  const [productList, setProductList] = React.useState([]);
-
-  useEffect(() => {
-    getAllProduct()
-      .then((res) => {
-        setProductList(res);
-      })
-  }, []);
-
+  // useEffect(() => {
+  //   getAllProduct()
+  //     .then((res) => {
+  //       setProductList(res);
+  //     })
+  // }, []);
 
   return (
     <>
@@ -38,14 +36,25 @@ function ProductsMainPart(props) {
           </div>
           {/* Product Grid */}
           <div className={`${Style.productsGrid}`}>
-            {productList.map((product) => {
+            {/* {productList.map((product) => {
               return (
                 <ProductItem
                   key={product._id}
                   data={product}
                 />
               );
-            })}
+            })} */}
+
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
           </div>
           {/* Pagination */}
           <div className={`${Style.paginationContainer}`}>
