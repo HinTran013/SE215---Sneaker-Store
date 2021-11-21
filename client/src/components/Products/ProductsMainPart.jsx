@@ -55,6 +55,8 @@ function ProductsMainPart(props) {
             <ProductItem data={OneProduct} />
             <ProductItem data={OneProduct} />
             <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
+            <ProductItem data={OneProduct} />
           </div>
           {/* Pagination */}
           <div className={`${Style.paginationContainer}`}>
