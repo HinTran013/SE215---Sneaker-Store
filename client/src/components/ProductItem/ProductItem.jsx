@@ -1,17 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './ProductItem.module.css'
 import Nike1 from '../../assets/images/sneaker-transparent/nike-1.png'     //temp image
+import ProductModal from '../ProductModal/ProductModal';
+import {useHistory} from 'react-router-dom';
 
 function ProductItem({ data }) {
+     const history = useHistory();
 
+     const [showModal, setShowModal] = useState(false);
+    
+     const openModal = (e) => {
+          e.stopPropagation();
+          setShowModal(prev => !prev);    
+     }
+     function handleNavClick(linkPath) {
+          history.push(linkPath);
+     }
+  
      return (
-          <a href={`/product/${data._id}`} className={style.card}>
+          <>
+          {showModal ? <ProductModal showModal={showModal} setShowModal={setShowModal}/> : null}
+          <div className={style.card} onClick={() => handleNavClick(`/product/${data._id}`)}>
                <div className={style.imgBox}>
                     <img src={Nike1} />
                </div>
-
+               
                <div className={style.popup}>
-                    <div className={`${style.btn} ${style.btn1}`}>
+                    <div className={`${style.btn} ${style.btn1}`} onClick={openModal}>
                          <i className="fas fa-ellipsis-h"></i>
                     </div>
                     <div className={`${style.btn} ${style.btn2}`}>
@@ -34,7 +49,8 @@ function ProductItem({ data }) {
                     <p className={style.shortDesc}>{data.shortDescription}</p>
                     <h2 className={style.price}>{`$${data.price}`}</h2>
                </div>
-          </a>
+          </div>
+          </>
      )
 }
 

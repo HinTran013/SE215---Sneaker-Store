@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import backgroundImageTop from "../assets/images/productDetail/detail-product-bg.jpg";
 import BackgroundWithPath from "../components/Products/BackgroundWithPath";
 import ProductsMainPart from "../components/Products/ProductsMainPart";
@@ -16,6 +16,8 @@ const ProductPage = () => {
     return setShowMobileSideBar(!showMobileSideBar);
   };
 
+  
+  
   // //if user scroll to bottom -> hide floating filter on small device (avoid overlay pagination section)
   // function hideFloatingFilter(e) {
   //   const bottom =
@@ -33,16 +35,18 @@ const ProductPage = () => {
         pathText="Home/ Products"
         title="Men's shoes"
       />
-
+ 
       {/* Show products and side bar */}
       <ProductsMainPart
         showMobileSideBar={showMobileSideBar}
         toggleMobileSideBar={toggleMobileSideBar}
       />
+     
 
       {/* floating mobile side menu button */}
 
       <FloatingFilter click={toggleMobileSideBar} isShow={showMobileSideBar} />
+      
     </div>
   );
 };
