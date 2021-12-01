@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Style from "./ProductsMainPart.module.css";
 import SideBar from "./SideBar";
 import { OneProduct } from "../ProductDetail/ProductData";
@@ -17,6 +17,7 @@ function ProductsMainPart(props) {
   //     })
   // }, []);
 
+ 
   return (
     <>
       <div className={Style.mainPartContainer}>
@@ -44,7 +45,7 @@ function ProductsMainPart(props) {
                 />
               );
             })} */}
-
+             
             <ProductItem data={OneProduct} />
             <ProductItem data={OneProduct} />
             <ProductItem data={OneProduct} />
