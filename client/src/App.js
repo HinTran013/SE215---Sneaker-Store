@@ -7,6 +7,7 @@ import ProductDetail from "./pages/ProductDetail";
 import AboutUsPage from "./pages/AboutUsPage";
 import BlogPage from "./pages/BlogPage";
 import CartPage from "./pages/CartPage";
+import Page404 from "./pages/ErrorPage";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/footer";
@@ -23,7 +24,7 @@ function App() {
           <Route exact path="/product" component={ProductPage} />
           <Route exact path="/product/:id" component={ProductDetail} />
           <Route path="/about-us" component={AboutUsPage} />
-          <Route path="/blog" component={BlogPage} />
+          <Route path="/blog" component={Page404} />
           <Route path="/cart" component={CartPage} />
         </Switch>
       </Router>

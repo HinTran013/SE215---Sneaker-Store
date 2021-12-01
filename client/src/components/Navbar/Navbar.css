@@ -223,11 +223,13 @@
     transition: all .5s ease;
     display: inline-block;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .close_btn:hover {
     color: black;
 }
+
 
 
 /* ANIMATIONS */

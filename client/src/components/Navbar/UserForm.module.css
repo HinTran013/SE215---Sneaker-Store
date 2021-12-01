@@ -1,9 +1,4 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+
 .text_default {
     font-family: Barlow, sans-serif;
     line-height: 28px;
@@ -22,7 +17,7 @@ h6,
     width: 85%;
 }
 
-.logo_login_form {
+.logo {
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
 }
@@ -140,11 +135,11 @@ h6,
     margin-bottom: 0.5rem;
 }
 
-.text-center {
+.text_center {
     text-align: center;
 }
 
-.justify-center {
+.justify_center {
     justify-content: center;
 }
 
@@ -152,15 +147,15 @@ h6,
     background-color: #c50215;
 }
 
-a:hover {
+.link:hover {
     color: #c50215;
 }
 
-a {
+.link {
     text-decoration: none;
     color: #c5c4c4;
 }
 
-.mb-1 {
+.mb_1 {
     margin-bottom: 1.6rem;
 }
