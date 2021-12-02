@@ -93,7 +93,7 @@ function Navbar() {
                               // onAfterClose={() => { document.body.style.overflow = 'visible' }}
                               >
                                    <UserForm></UserForm>
-                                        <Link to="" href = 'javascript:void(0)' className='close_btn' onClick={() => setModalIsOpen(false)}>x</Link>
+                                   <a href = 'javascript:void(0)' className='close_btn' onClick={() => setModalIsOpen(false)}>x</a>
                               </Modal>
                          </div>
                     </div>
