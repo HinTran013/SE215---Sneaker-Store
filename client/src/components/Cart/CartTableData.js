@@ -1,6 +1,6 @@
 import sneaker from "../../assets/images/ColoredSneaker.png"
 
-export const CartItem =
+const CartItem =
 [
     {
         thumbnail: sneaker,
@@ -8,7 +8,7 @@ export const CartItem =
         detailColor: "Red",
         detailSize: "XXL",
         price: "244.000 VND",
-        quantity: 244,
+        discount: 0,
         total: "244.000 VND"
     },
     {
@@ -17,7 +17,7 @@ export const CartItem =
         detailColor: "Red",
         detailSize: "XXL",
         price: "244.000 VND",
-        quantity: 244,
+        discount: 0,
         total: "244.000 VND"
     }, 
     {
@@ -26,7 +26,9 @@ export const CartItem =
         detailColor: "Red",
         detailSize: "XXL",
         price: "244.000 VND",
-        quantity: 244,
+        discount: 0,
         total: "244.000 VND"
     },
 ]
+
+export default CartItem;

@@ -1,45 +1,52 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import style from "./CartTable.module.css"
-import sneaker from "../../assets/images/ColoredSneaker.png"
-import { CartItem } from "./CartTableData.js"
+import CartList from "./CartTableData"
+import styleCartTable from "./CartTable.module.css"
+import sneaker from "../../assets/images/ColoredSneaker.png"    //temp image
 
-const CartTable = () =>
-{
+
+const CartTable = () => {
     return (
-        <div>
-            <table className={style.cartTable}>
-                <thead>
-                    <tr className={style.trHead}>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
+        <table className={styleCartTable.cartTable}>
+            <thead>
+                <tr className={styleCartTable.trHead}>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
 
-                <tbody className={style.trProduct}>
+            <tbody className={styleCartTable.trProduct}>
 
-                    {CartItem.map((item) => {
-                        return (
-                            <tr>
-                                <th>
-                                    <img src={item.thumbnail} alt="" />
-                                    <div className={style.nameProduct}>
-                                        <p>{item.name }</p>
-                                        <p>{item.detailColor }</p>
-                                        <p>{item.detailSize }</p>
+
+                {CartList.map((item) => {
+                    return (
+                        <tr>
+                            <th>
+                                <div className={styleCartTable.mainInfo}>
+                                    <img src={sneaker} alt="" />
+                                    <div className={styleCartTable.nameProduct}>
+                                        <p>{item.name}</p>
+                                        <div className={styleCartTable.propsProduct}>
+                                            <p>{item.detailColor}</p>
+                                            <p>{item.detailSize}</p>
+                                        </div>
+                                        <div className={styleCartTable.propsProduct}>
+                                            <p className={styleCartTable.newTotal}>Total {item.discount}</p>
+                                        </div>
+
                                     </div>
-                                </th>
-                                <th className={style.amount}>{item.price }</th>
-                                <th className={style.quantity}>{item.quantity }</th>
-                                <th className={style.amount}>{item.total }</th>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        </div>
+                                </div>
+                            </th>
+                            <th className={styleCartTable.amount}>{item.price}</th>
+                            <th className={styleCartTable.discount}>{item.discount}</th>
+                            <th className={styleCartTable.amount}>{item.total}</th>
+                        </tr>
+                    );
+                })}
+            </tbody>
+        </table>
     );
 }
 

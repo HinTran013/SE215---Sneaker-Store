@@ -8,7 +8,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import BlogPage from "./pages/BlogPage";
 import CartPage from "./pages/CartPage";
 import Page404 from "./pages/ErrorPage";
-
+import ContactUs from "./pages/ContactUs";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/footer";
 
@@ -26,6 +26,7 @@ function App() {
           <Route path="/about-us" component={AboutUsPage} />
           <Route path="/blog" component={Page404} />
           <Route path="/cart" component={CartPage} />
+          <Route path="/contact" component={ContactUs} />
         </Switch>
         <Footer />
       </Router>
