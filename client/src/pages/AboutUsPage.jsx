@@ -3,6 +3,7 @@ import backgroundImageTop from "../assets/images/productDetail/detail-product-bg
 import { Link } from 'react-router-dom'
 import style from "../pageStyle/AboutUsPage.module.css"
 import ServiceSection from "../components/ServiceSection/ServiceSection";
+import backgroundImage from "../assets/images/empty.jpg"
 
 function AboutUsPage() {
     const background = {
@@ -37,6 +38,36 @@ function AboutUsPage() {
         <ServiceSection />
         <div className={style.introduce_team}>
           <h2 className={style.title_team}>Our Teams</h2>
+          <div className={style.team_member}>
+            <div className={style.team_member_card}>
+              <div className={style.team_member_img}>
+                <img src={backgroundImage} className={style.team_member_image}></img>
+              </div>
+              <div className={style.team_member_info}>
+                <h2></h2>
+                <p className={style.team_name}>Lưu Ngọc Sáng</p>
+              </div>
+            </div>
+            <div className={style.team_member_card}>
+              <div className={style.team_member_img}>
+                <img src={backgroundImage} className={style.team_member_image}></img>
+              </div>
+              <div className={style.team_member_info}>
+                <h2></h2>
+                <p className={style.team_name}>Phạm Hớn Tuyền</p>
+              </div>
+            </div>
+            <div className={style.team_member_card}>
+              <div className={style.team_member_img}>
+                <img src={backgroundImage} className={style.team_member_image}></img>
+              </div>
+              <div className={style.team_member_info}>
+                <h2></h2>
+                <p className={style.team_name}>Trần Thanh Hiền</p>
+              </div>
+            </div>
+
+          </div>
         </div>
         </>
     )
