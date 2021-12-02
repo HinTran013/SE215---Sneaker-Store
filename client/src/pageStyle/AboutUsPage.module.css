@@ -108,7 +108,7 @@
   justify-content: space-around;
 }
 .team_member_card{
-  width: 26%;
+  width: 20%;
   height: 350px;
   border-radius: 20px;
   text-decoration: none;
@@ -148,12 +148,6 @@
 .team_member::-webkit-scrollbar-track {
   background-color: #e4e4e4;
   border-radius: 100px;
-}
-
-@media (max-width: 1100px){
-  .team_member_card {
-    width: 35%;
-  }
 }
 
 @media (max-width: 740px) {
