@@ -26,7 +26,7 @@ function DetailInfo({ id }) {
 
      return (
           <div className={style.container}>
-               <h4 className={style.path}>Product/Nike Shoes</h4>
+               <h4 className={style.path}>Product/Nike Pagasus Trail 3 Newest Newwwwww</h4>
 
                <div className={style.infoContainer}>
                     <div className={style.imgWrapper}>
@@ -55,11 +55,11 @@ function DetailInfo({ id }) {
 
                     <div className={style.infoWrapper}>
                          <div className={style.info}>
-                              <h2 className={style.name}>{product.name}</h2>
-                              <h4 className={style.brand}>{product.brand}</h4>
-                              <h4 className={style.rating}>Rating: {product.rating}</h4>
-                              <p className={style.price}>$ {product.price}</p>
-                              <p className={style.description}>{product.description}</p>
+                              <h2 className={style.name}>Nike Pegasus Trail 3 Newest Newwwwww</h2>
+                              <h4 className={style.brand}>Nike</h4>
+                              <h4 className={style.rating}>Rating: 4.5</h4>
+                              <p className={style.price}>$ 220</p>
+                              <p className={style.description}>Journey off the beaten path and into wet weather with the Nike Pegasus Trail 3 GORETEX. It’s made with the same cushioned comfort you love, plus tough traction and improve midfoot construction for secure, neutral support.</p>
 
                               
                               <h4 className={style.sizeText}>Size</h4>

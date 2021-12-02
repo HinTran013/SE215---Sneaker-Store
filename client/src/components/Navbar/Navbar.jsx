@@ -5,6 +5,7 @@ import { Brands } from './BrandData'
 import UserForm from './UserForm'
 import './Navbar.css'
 import './NavbarResponsive.css'
+import ModalAccount from './ModalAccount'
 
 
 Modal.setAppElement('#root')
@@ -14,6 +15,7 @@ function Navbar() {
      const [navbarMobile, setNavbarMobile] = useState(false)
      const [inputSearch, setInputSearch] = useState(false)
      const [modalIsOpen, setModalIsOpen] = useState(false)
+     const isLoggedIn = true
 
      // change navbar background when scroll
      const changeNavbar = () => {
@@ -23,6 +25,9 @@ function Navbar() {
           else {
                setNavbar(false)
           }
+     }
+     const onHover = () => {
+          
      }
 
      window.addEventListener('scroll', changeNavbar)
@@ -86,7 +91,9 @@ function Navbar() {
                          </div>
                          <i className='far fa-shopping-cart'></i>
                          <div className='header__btn-login'>
-                              <i className='far fa-user' onClick={() => setModalIsOpen(true)} />
+                              {isLoggedIn
+                              ? <ModalAccount />
+                              : <i className='far fa-user' onClick={() => setModalIsOpen(true)} />}
                               <Modal className='ModalReact__Content' overlayClassName='ModalReact__Overlay'
                                    isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                               // onAfterOpen={() => { document.body.style.overflow = 'hidden' }}

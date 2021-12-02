@@ -63,3 +63,16 @@
     color: #000;
     font-size: 32px;
 }
+@media (max-width: 739px) {
+    .modal__wrapper {
+        display: block;
+        margin: 10px;
+    }
+    .modal__image {
+        width: 45%;
+        height: 45%;
+    }
+    .modal__close {
+        font-size: 22px;
+    }
+}
