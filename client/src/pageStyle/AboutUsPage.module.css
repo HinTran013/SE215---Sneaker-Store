@@ -96,3 +96,9 @@
   color: #222;
   margin-bottom: 30px;
 }
+
+@media (max-width: 739px) {
+  .history{
+    flex-wrap: wrap;
+  }
+}

@@ -121,4 +121,16 @@
      .search-on-scroll {
           display: none;
      }
+
+     .ModalReact__Content{
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          inset: 0px;
+     }
+
+     .ReactModal__Body--open {
+          overflow: hidden;
+          position: fixed;
+     }
 }
