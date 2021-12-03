@@ -13,6 +13,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/footer";
 
 import React from "react";
+import AccountInfoPage from "./pages/AccountInfoPage";
+import HistoryInfoPage from "./pages/HistoryInfoPage";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/blog" component={Page404} />
           <Route path="/cart" component={CartPage} />
           <Route path="/contact" component={ContactUs} />
+          <Route path="/account" component={AccountInfoPage} />
+          <Route path="/history" component={HistoryInfoPage} />
         </Switch>
         <Footer />
       </Router>
