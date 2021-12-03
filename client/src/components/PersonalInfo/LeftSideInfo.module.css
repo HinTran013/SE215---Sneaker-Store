@@ -25,3 +25,6 @@
 .container div:hover {
     cursor: pointer;
 }
+.isChosen {
+    font-weight: bolder;
+}
