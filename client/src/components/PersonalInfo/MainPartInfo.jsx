@@ -51,7 +51,7 @@ function MainPartInfo() {
                 </tr>
                 <tr>
                     <td></td>
-                    <td><button>Save</button></td>
+                    <td><div className={style.button}>Save</div></td>
                 </tr>
             </table>
         </div>

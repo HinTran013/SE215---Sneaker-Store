@@ -5,7 +5,7 @@ import { OneProduct } from './ProductData'
 
 function SuggestProducts() {
      return (
-          <>
+          <div>
                <h2 className={style.text}>Suggested Products</h2>
                <div className={style.container}>
                     <ProductItem
@@ -30,7 +30,7 @@ function SuggestProducts() {
                          data={OneProduct}
                     />
                </div>
-          </>
+          </div>
      )
 }
 

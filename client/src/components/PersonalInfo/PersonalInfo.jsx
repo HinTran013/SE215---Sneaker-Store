@@ -9,7 +9,7 @@ function PersonalInfo({bool}) {
     const [account, setAccount] = useState(bool);
 
     return(
-        <div style={{padding: '100px 200px', background: '#f8f4f4'}} className={style.row}>
+        <div className={style.row}>
             <LeftSideInfo account={account} setAccount={setAccount}/>
             {account ? <MainPartInfo /> : <HistoryPart />}
         </div>

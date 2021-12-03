@@ -28,3 +28,6 @@
 .isChosen {
     font-weight: bolder;
 }
+@media (max-width: 900px) {
+    .container {padding: 10px;}
+}

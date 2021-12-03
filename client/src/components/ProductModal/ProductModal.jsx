@@ -1,5 +1,4 @@
 import React from "react";
-import {useSpring, animated} from 'react-spring';
 import style from './ProductModal.module.css';
 import Nike1 from '../../assets/images/sneaker-transparent/nike-1.png';
 
@@ -10,6 +9,7 @@ function ProductModal({ showModal, setShowModal }) {
         setShowModal(prev => !prev);
     }
     return(
+    <>
         <div className={style.modal}>
             <div className={style.modal__wrapper}>
                 <img className={style.modal__image} src={Nike1} alt="" />
@@ -21,6 +21,7 @@ function ProductModal({ showModal, setShowModal }) {
                 <i className={`${style.modal__close} far fa-times-circle`} onClick={closeClick}></i>
             </div>
         </div>
+        </>
     );
 };
 

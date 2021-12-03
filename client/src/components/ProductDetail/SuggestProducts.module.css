@@ -1,8 +1,8 @@
 .container {
-     height: 450px;
+     height: 450px; 
      padding: 0 28px;
      margin: 28px 0;
-     display: flex; 
+     display: flex;  
      gap: 28px;
      align-items: center;
      overflow-x: scroll;
