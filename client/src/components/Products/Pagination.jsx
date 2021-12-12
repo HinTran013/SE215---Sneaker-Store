@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import Style from "./Pagination.module.css";
 
-const Pagination = () => {
-  const maxPage = 3;
-
-  const [page, setPageState] = useState(1);
-
+const Pagination = ({
+  total,
+  pageNumber,
+  changePage,
+  setPrevShowingAmount,
+  setNextShowingAmount,
+}) => {
   const setPreviousPage = () => {
-    if (page > 1) {
-      setPageState(page - 1);
+    if (pageNumber > 0) {
+      changePage(pageNumber - 1);
     }
   };
 
   const setNextPage = () => {
-    if (page < maxPage) {
-      setPageState(page + 1);
+    if (pageNumber < total - 1) {
+      changePage(pageNumber + 1);
     }
   };
 
@@ -25,21 +27,25 @@ const Pagination = () => {
           className={`${Style.arrowLeftContainer}`}
           onClick={() => {
             setPreviousPage();
+            setPrevShowingAmount();
           }}
         >
           <i className={`${Style.arrowLeft} fas fa-chevron-left`}></i>
         </div>
 
         <div className={`${Style.paginationMainPart}`}>
-          <div className={`${Style.currentPageContainer}`}>Page {page}</div>
+          <div className={`${Style.currentPageContainer}`}>
+            Page {parseInt(pageNumber) + 1}
+          </div>
           <div className={`${Style.totalPageContainer}`}>
-            <span>of {maxPage}</span>
+            <span>of {total}</span>
           </div>
         </div>
         <div
           className={`${Style.arrowRightContainer}`}
           onClick={() => {
             setNextPage();
+            setNextShowingAmount();
           }}
         >
           <i className={`${Style.arrowRight} fas fa-chevron-right`}></i>

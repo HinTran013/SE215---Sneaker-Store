@@ -1,6 +1,6 @@
 import sneaker from "../../assets/images/ColoredSneaker.png"
 
-const CartItem =
+export const CartItem =
 [
     {
         thumbnail: sneaker,
@@ -30,5 +30,3 @@ const CartItem =
         total: "244.000 VND"
     },
 ]
-
-export default CartItem;

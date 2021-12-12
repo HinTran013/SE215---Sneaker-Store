@@ -1,7 +1,7 @@
 .card {
-  width: 26%;
+  width: 270px;
   height: 350px;
-  margin: 20px 0px;
+  margin: 50px 6px;
   border-radius: 20px;
   text-decoration: none;
   position: relative;
@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s ease-in-out;
+  padding-bottom: 30px;
 }
 
 .card:hover {
@@ -31,10 +32,12 @@
 }
 
 .imgBox {
-  width: 80%;
-  height: 200px;
+  width: 90%;
+  height: 210px;
   padding: 20px;
   transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
 }
 
 .imgBox img {
@@ -52,6 +55,7 @@
   justify-content: center;
   align-items: center;
   color: #333;
+  z-index: 2;
 }
 
 .btn {
@@ -90,7 +94,7 @@
 
 .content {
   text-align: center;
-  transform: translateY(-20px);
+  /* transform: translateY(-20px); */
 }
 
 .name {
@@ -107,6 +111,27 @@
 .rating i {
   margin: 0 1px;
   color: #ffab04;
+}
+
+.sizeContainer {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #333;
+  margin-top: 8px;
+}
+
+.sizeItem {
+  margin-right: 6px;
+}
+
+.sizeItem:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.sizeChoose {
+  color: red;
 }
 
 .shortDesc {
@@ -139,14 +164,14 @@
 @media (max-width: 740px) and (min-width: 700px) {
   .card {
     width: 80%;
-    height: 500px;
+    height: 400px;
   }
 }
 
 @media (max-width: 699px) and (min-width: 575px) {
   .card {
     width: 80%;
-    height: 450px;
+    height: 420px;
   }
 }
 

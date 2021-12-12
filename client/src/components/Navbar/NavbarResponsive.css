@@ -78,6 +78,14 @@
           color: white;
      }
 
+     .header__navbar-item p {
+          color: white;
+     }
+
+     .navbar__product-container h4 {
+          color: white;
+     }
+
      .navbar__product-item__img {
           filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
      }
@@ -122,15 +130,9 @@
           display: none;
      }
 
-     .ModalReact__Content{
+     .ModalReact__Content {
           width: 100%;
           height: 100%;
-          margin: 0;
-          inset: 0px;
-     }
-
-     .ReactModal__Body--open {
-          overflow: hidden;
-          position: fixed;
+          inset: 0;
      }
 }
