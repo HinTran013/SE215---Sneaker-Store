@@ -12,6 +12,7 @@ import {
   deleteNavFindFilter,
   addBrandFilter,
 } from "../../features/productArrangeSlice";
+import { CircularProgress } from "@material-ui/core";
 
 function ProductsMainPart(props) {
   //get filter global state from redux
@@ -23,7 +24,7 @@ function ProductsMainPart(props) {
   const [pageNumber, setPageNumber] = React.useState(0);
   const [totalPage, setTotalPage] = React.useState(0);
   const [totalProduct, setTotalProduct] = React.useState();
-  const [productList, setProductList] = React.useState([]);
+  const [productList, setProductList] = React.useState(null);
   const [showingAmount, setShowingAmount] = React.useState({
     startProduct: 1,
     endProduct: 12,
@@ -106,10 +107,17 @@ function ProductsMainPart(props) {
           </div>
           {/* Product Grid */}
           <div className={`${Style.productsGrid}`}>
-            {productList.map((product) => {
-              return <ProductItem key={product._id} data={product} />;
-            })}
+            {productList
+              ? productList.map((product) => {
+                  return <ProductItem key={product._id} data={product} />;
+                })
+              : null}
           </div>
+          {productList === null && (
+            <div className={Style.progressContainer}>
+              <CircularProgress />
+            </div>
+          )}
           {/* Pagination */}
           <div className={`${Style.paginationContainer}`}>
             <Pagination

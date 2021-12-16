@@ -19,6 +19,14 @@
   row-gap: 50px;
 }
 
+.progressContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+
 @media (max-width: 1440px) {
   .productsGrid {
     column-gap: 100px;
