@@ -7,6 +7,7 @@ import Nike1 from "../../assets/images/sneaker-transparent/nike-1.png";
 import ReactStars from "react-rating-stars-component";
 import { Bar } from "react-chartjs-2";
 import ToastMessage from "../ToastMessage/ToastMessage";
+import MyCommentData from "./commentData";
 
 import {
   getAll,
@@ -88,6 +89,8 @@ function CmtAndRating({ id }) {
 
   const [yourComment, setYourComment] = useState();
 
+  const [myComments, setMyComments] = useState(MyCommentData);
+
   const ratingChanged = (newRating) => {
     setRatingVote(newRating);
     displayRatingText(newRating);
@@ -126,142 +129,6 @@ function CmtAndRating({ id }) {
     }
 
     setopenModal(!openModal);
-  };
-
-  const createNewComment = async (
-    customerID,
-    customerName,
-    productID,
-    commentText,
-    rating,
-    time
-  ) => {
-    await createComment(
-      customerID,
-      customerName,
-      productID,
-      commentText,
-      rating,
-      time
-    )
-      .then((res) => {
-        ToastMessage("success", "Comment submitted");
-        setopenModal(!openModal);
-        setRatingVote(0);
-        setRatingText("");
-
-        // update current comment list
-        setCommentList([
-          ...commentList,
-          {
-            customerID: customerID,
-            customerName: customer.name,
-            productID: productID,
-            comment: commentText,
-            rating: rating,
-            time: time,
-          },
-        ]);
-
-        // update current your comment
-        setYourComment({
-          customerID: customerID,
-          customerName: customer.name,
-          productID: productID,
-          comment: commentText,
-          rating: rating,
-          time: time,
-        });
-
-        // update current rating point
-        calculateRatingPoint([
-          ...commentList,
-          {
-            customerID: customerID,
-            customerName: customer.name,
-            productID: productID,
-            comment: commentText,
-            rating: rating,
-            time: time,
-          },
-        ]);
-      })
-      .catch((err) => {
-        ToastMessage("error", "Comment failed");
-        console.log(err);
-      });
-  };
-
-  const updateCurrentComment = async (
-    customerID,
-    productID,
-    commentText,
-    rating,
-    time
-  ) => {
-    await updateComment(customerID, productID, commentText, rating, time)
-      .then((res) => {
-        ToastMessage("success", "Comment updated successfully!");
-        setopenModal(!openModal);
-        setRatingVote(0);
-        setRatingText("");
-
-        // update current comment list
-        setCommentList(
-          commentList.map((comment) => {
-            if (
-              comment.customerID === customerID &&
-              comment.productID === productID
-            ) {
-              return {
-                customerID: customerID,
-                customerName: customer.name,
-                productID: productID,
-                comment: commentText,
-                rating: rating,
-                time: time,
-              };
-            } else {
-              return comment;
-            }
-          })
-        );
-
-        // update current your comment
-        setYourComment({
-          customerID: customerID,
-          customerName: customer.name,
-          productID: productID,
-          comment: commentText,
-          rating: rating,
-          time: time,
-        });
-
-        // update current rating point
-        calculateRatingPoint(
-          commentList.map((comment) => {
-            if (
-              comment.customerID === customerID &&
-              comment.productID === productID
-            ) {
-              return {
-                customerID: customerID,
-                customerName: customer.name,
-                productID: productID,
-                comment: commentText,
-                rating: rating,
-                time: time,
-              };
-            } else {
-              return comment;
-            }
-          })
-        );
-      })
-      .catch((err) => {
-        ToastMessage("error", "Comment update failed");
-        console.log(err);
-      });
   };
 
   const calculateRatingPoint = (list) => {
@@ -405,14 +272,6 @@ function CmtAndRating({ id }) {
                   </p>
 
                   <div className={style.modalMainSection}>
-                    {/* 
-                                                  Product's img and name
-                                                  <div className={style.modalThumb}>
-                                                       <img className={style.modalThumbImg} src={Nike1} alt="thumb" />
-                                                       <h4 className={style.modalThumbName}>Nike Pegasus</h4>
-                                                  </div>
-                                             */}
-
                     <textarea
                       className={style.modalContentInput}
                       type="text"
@@ -454,12 +313,17 @@ function CmtAndRating({ id }) {
         </div>
 
         <div className={style.commentSection}>
-          <CommentItem
-            customerName="Thanh Hien"
-            comment="This product is good"
-            rating={4}
-            time="21/12/2021"
-          />
+          {myComments.map((item, index) => {
+            return (
+              <CommentItem
+                key={index}
+                customerName={item.customerName}
+                comment={item.comment}
+                rating={item.rating}
+                time={item.time}
+              />
+            );
+          })}
         </div>
 
         <h3 className={style.allCommentTitle}>All Comments</h3>
