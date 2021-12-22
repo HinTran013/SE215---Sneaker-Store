@@ -6,33 +6,15 @@ import { getOneProduct } from "../../api/productAPI";
 import { selectCustomer } from "../../features/customerSlice";
 import ToastMessage from "../ToastMessage/ToastMessage";
 import { selectCartList, addCartItemToRedux } from "../../features/cartSlice";
-
-import { createCart, addToCart, getCurrent } from "../../api/cartAPI";
-
-import {
-  getFavourites,
-  createFavouriteList,
-  addFavourite,
-  removeFavourite,
-} from "../../api/favouriteAPI";
-
-import {
-  selectFavouriteList,
-  addFavouriteToRedux,
-  removeFavouriteFromRedux,
-} from "../../features/favouriteSlice";
 import { CircularProgress } from "@material-ui/core";
 
 function DetailInfo({ id }) {
-  const customer = useSelector(selectCustomer); //get current logged in customer
-  const favouriteList = useSelector(selectFavouriteList) || []; //get current favourite list
   const cartList = useSelector(selectCartList) || []; //get current cart list
-
-  const dispatch = useDispatch();
 
   const [color, setColor] = useState(0);
   const [sizeChoose, setSizeChoose] = useState("");
   const [product, setProduct] = useState(null);
+  const [favorite, setFavorite] = useState(false);
 
   const changeColor = (index) => {
     setColor(index);
@@ -46,120 +28,20 @@ function DetailInfo({ id }) {
     if (sizeChoose === "") {
       ToastMessage("error", "Please choose a size!");
       return;
-    }
-
-    if (customer) {
-      getCurrent(customer.id)
-        .then((res) => {
-          // exist current cart in database
-          if (res) {
-            addToCartDatabase();
-          } else {
-            createCart(customer.id).then((res) => {
-              addToCartDatabase();
-            });
-          }
-        })
-        .catch((err) => {
-          // HANDLE GET ADD PRODUCT TO DATABASE FAILED HERE
-          ToastMessage("error", "Something went wrong!");
-          console.log(err);
-        });
     } else {
-      addToCartLocal();
-    }
-  };
-
-  const addToCartLocal = () => {
-    const sessionStorage = window.sessionStorage;
-    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].id === product._id) {
-        ToastMessage("error", "This product is already in your cart!");
-        return;
-      }
-    }
-
-    sessionStorage.setItem(
-      "cart",
-      JSON.stringify([
-        ...cart,
-        {
-          id: product._id,
-          size: product.size[sizeChoose],
-          name: product.name,
-          brand: product.brand,
-          color: product.color,
-          price: product.price,
-          salePercent: product.salePercent,
-          quantity: 1,
-          image: product.images[0],
-        },
-      ])
-    );
-    ToastMessage("success", "Added to cart successfully!");
-  };
-
-  const addToCartDatabase = () => {
-    if (isInCart()) {
-      ToastMessage("error", "This product is already in your cart!");
+      ToastMessage("success", "Add to cart successfully!");
       return;
-    } else {
-      addToCart(
-        customer.id,
-        product._id,
-        product.name,
-        product.brand,
-        product.price,
-        product.size[sizeChoose],
-        product.color,
-        product.salePercent,
-        product.images[0]
-      )
-        .then((res) => {
-          // HANDLE UPDATE UI WHEN ADD TO CART SUCCESSFULLY HERE
-          ToastMessage("success", "Added to cart successfully!");
-
-          // add to cart list in redux
-          dispatch(addCartItemToRedux(product._id));
-        })
-        .catch((err) => {
-          console.log(err);
-          // HANDLE UPDATE UI WHEN ADD TO CART FAIL HERE
-          ToastMessage("error", "Add to cart failed!");
-        });
     }
   };
 
   const handleAddToFavorite = () => {
-    if (customer) {
-      addFavourite(customer.id, product._id).then((res) => {
-        dispatch(addFavouriteToRedux(product._id));
-        // HANDLE UPDATE UI WHEN ADD FAVOURITE SUCCESSFULLY HERE
-        ToastMessage("success", "Favourite added successfully!");
-      });
-    } else {
-      // HANDLE NOTIFY WHEN USER NOT LOGGED IN HERE
-      ToastMessage("error", "Please login to use this feature!");
-    }
+    ToastMessage("success", "Favourite added successfully!");
+    setFavorite(!favorite);
   };
 
   const hanleRemoveFromFavorite = () => {
-    if (customer) {
-      removeFavourite(customer.id, product._id).then((res) => {
-        // HANDLE UPDATE UI WHEN REMOVE FAVOURITE SUCCESSFULLY HERE
-        dispatch(removeFavouriteFromRedux(product._id));
-        ToastMessage("success", "Favourite removed successfully!");
-      });
-    }
-  };
-
-  const isFavourite = () => {
-    if (favouriteList.includes(product._id)) {
-      return true;
-    }
-    return false;
+    ToastMessage("success", "Favourite removed successfully!");
+    setFavorite(!favorite);
   };
 
   const isInCart = () => {
@@ -179,16 +61,16 @@ function DetailInfo({ id }) {
     <>
       {product !== null && (
         <div className={style.container}>
-          <h4 className={style.path}>Product / {product.name}</h4>
+          <h4 className={style.path}>Product / beautiful sneaker</h4>
 
           <div className={style.infoContainer}>
             <div className={style.imgWrapper}>
               <div className={style.mainImg}>
-                <img src={product.images[color]} />
+                <img src={OneProduct.src[color]} alt="sneaker" />
               </div>
 
               <div className={style.colorThumb}>
-                {product.images.map((item, index) => (
+                {OneProduct.src.map((item, index) => (
                   <div
                     className={
                       index === color
@@ -208,14 +90,19 @@ function DetailInfo({ id }) {
 
             <div className={style.infoWrapper}>
               <div className={style.info}>
-                <h2 className={style.name}>{product.name}</h2>
-                <h4 className={style.brand}>{product.brand}</h4>
-                <p className={style.price}>$ {product.price}</p>
-                <p className={style.description}>{product.description}</p>
+                <h2 className={style.name}>Beautiful Sneaker</h2>
+                <h4 className={style.brand}>Nike</h4>
+                <p className={style.price}>$200</p>
+                <p className={style.description}>
+                  Journey off the beaten path and into wet weather with the
+                  Puma.It's made with the same cushioned comfort you love, plus
+                  tough traction and improved midfoot construction for secure,
+                  neutral support.
+                </p>
 
                 <h4 className={style.sizeText}>Size</h4>
                 <div className={style.sizeContainer}>
-                  {product.size.map((item, index) => (
+                  {OneProduct.size.map((item, index) => (
                     <div
                       className={
                         index === sizeChoose
@@ -238,20 +125,18 @@ function DetailInfo({ id }) {
                 </button>
                 <button
                   className={
-                    isFavourite()
-                      ? style.btnFavouriteActive
-                      : style.btnFavourite
+                    favorite ? style.btnFavouriteActive : style.btnFavourite
                   }
                   onClick={() => {
                     // add if not favourite, remove if favourite
-                    if (isFavourite()) {
+                    if (favorite) {
                       hanleRemoveFromFavorite();
                     } else {
                       handleAddToFavorite();
                     }
                   }}
                 >
-                  {isFavourite() ? "Remove from favourite" : "Add to favourite"}
+                  {favorite ? "Remove from favourite" : "Add to favourite"}
                 </button>
               </div>
             </div>
