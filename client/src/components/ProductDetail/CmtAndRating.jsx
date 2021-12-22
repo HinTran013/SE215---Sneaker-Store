@@ -465,6 +465,13 @@ function CmtAndRating({ id }) {
         <h3 className={style.allCommentTitle}>All Comments</h3>
         <div className={style.commentSection}>
           <CommentItem
+            customerName="Thanh Hien"
+            comment="This product is good"
+            rating={4}
+            time="21/12/2021"
+          />
+
+          <CommentItem
             customerName="Khai Hoan"
             comment="so bad!!!"
             rating={1}
