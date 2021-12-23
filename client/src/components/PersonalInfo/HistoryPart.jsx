@@ -7,27 +7,26 @@ import { getHistory } from "../../api/cartAPI";
 import HistorySection from "./HistorySection";
 
 function HistoryPart() {
-  const customerState = useSelector(selectCustomer);
-  const customerID = customerState.id;
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getHistory(`http://localhost:3001/cart/history?id=${customerID}`).then(
-      (res) => {
-        // setProductList(res.products);
-        // setTotalPage(res.totalPage);
-        // setTotalProduct(res.totalProducts);
+    // getHistory(`http://localhost:3001/cart/history?id=${customerID}`).then(
+    //   (res) => {
+    //     // setProductList(res.products);
+    //     // setTotalPage(res.totalPage);
+    //     // setTotalProduct(res.totalProducts);
 
-        const listCarts = res.doneCarts;
-        let productDoneList = [];
+    //     const listCarts = res.doneCarts;
+    //     let productDoneList = [];
 
-        for (let i = 0; i < listCarts.length; i++) {
-          productDoneList = productDoneList.concat(listCarts[i].products);
-        }
+    //     for (let i = 0; i < listCarts.length; i++) {
+    //       productDoneList = productDoneList.concat(listCarts[i].products);
+    //     }
 
-        setProducts(productDoneList);
-      }
-    );
+    //     setProducts(productDoneList);
+    //   }
+    // );
   }, []);
 
   console.log("products: ", products);

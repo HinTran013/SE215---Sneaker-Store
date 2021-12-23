@@ -53,11 +53,11 @@ function App() {
           <Route path="/contact" component={ContactUs} />
           <Route
             path="/account"
-            component={customerState !== null ? AccountInfoPage : Page404}
+            component={AccountInfoPage}
           />
           <Route
             path="/history"
-            component={customerState !== null ? HistoryInfoPage : Page404}
+            component={HistoryInfoPage}
           />
           <Route component={Page404} />
         </Switch>

@@ -17,7 +17,7 @@ import { initCartList } from "../../features/cartSlice";
 import ToastMessage from "../ToastMessage/ToastMessage";
 import { createFavouriteList } from "../../api/favouriteAPI";
 
-function UserForm({ handleOpen }) {
+function UserForm({ handleOpen, isLogin, setLogin }) {
   const [loginDisplay, setLoginDisplay] = useState("block");
   const [registerDisplay, setRegisterDisplay] = useState("none");
   const [recoverDisplay, setRecoverDisplay] = useState("none");
@@ -32,63 +32,65 @@ function UserForm({ handleOpen }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setLogin(!isLogin);
+    handleOpen(false);
 
-    getCustomerLogin(emailLogin, passwordLogin).then((customer) => {
-      if (customer) {
-        // Dispatch customer's data to redux
-        dispatch(
-          login({
-            id: customer._id,
-            email: customer.email,
-            name: customer.name,
-            gender: customer.gender,
-            phone: customer.phone,
-            address: customer.address,
-          })
-        );
+    // getCustomerLogin(emailLogin, passwordLogin).then((customer) => {
+    //   if (customer) {
+    //     // Dispatch customer's data to redux
+    //     dispatch(
+    //       login({
+    //         id: customer._id,
+    //         email: customer.email,
+    //         name: customer.name,
+    //         gender: customer.gender,
+    //         phone: customer.phone,
+    //         address: customer.address,
+    //       })
+    //     );
 
-        // HANDLE UI UPDATE WHEN LOGIN SUCCESS HERE
-        ToastMessage("success", "Logged in successfully!");
+    //     // HANDLE UI UPDATE WHEN LOGIN SUCCESS HERE
+    //     ToastMessage("success", "Logged in successfully!");
 
-        // get favourite list of logged in user and dispatch to redux
-        dispatchFavouriteList(customer._id);
+    //     // get favourite list of logged in user and dispatch to redux
+    //     dispatchFavouriteList(customer._id);
 
-        // get current cart of logged in user and dispatch to redux
-        dispatchCartList(customer._id);
+    //     // get current cart of logged in user and dispatch to redux
+    //     dispatchCartList(customer._id);
 
-        handleOpen(false);
-      } else {
-        // HANDLE LOGIN FAIL HERE
-        ToastMessage("error", "Login failed!");
-      }
-    });
+    //     handleOpen(false);
+    //   } else {
+    //     // HANDLE LOGIN FAIL HERE
+    //     ToastMessage("error", "Login failed!");
+    //   }
+    // });
   };
 
   const handleSignup = (e) => {
     e.preventDefault();
+    SetFormDisplay("Login");
+    // getCustomerByEmail(emailSignup)
+    //   .then((customer) => {
+    //     if (customer) {
+    //       ToastMessage("error", "Customer already exists!");
+    //     } else {
+    //       createCustomerAccount(emailSignup, passwordSignup).then((res) => {
+    //         ToastMessage("success", "Sign up successfully!");
+    //         console.log(res);
 
-    getCustomerByEmail(emailSignup)
-      .then((customer) => {
-        if (customer) {
-          ToastMessage("error", "Customer already exists!");
-        } else {
-          createCustomerAccount(emailSignup, passwordSignup).then((res) => {
-            ToastMessage("success", "Sign up successfully!");
-            console.log(res);
-
-            // find customer has just created by email
-            getCustomerByEmail(emailSignup).then((customer) => {
-              // create favourite list for new customer
-              createFavouriteList(customer._id);
-            });
-          });
-          SetFormDisplay("Login");
-        }
-      })
-      .catch((err) => {
-        ToastMessage("error", "Something went wrong!");
-        console.log(err);
-      });
+    //         // find customer has just created by email
+    //         getCustomerByEmail(emailSignup).then((customer) => {
+    //           // create favourite list for new customer
+    //           createFavouriteList(customer._id);
+    //         });
+    //       });
+    //       SetFormDisplay("Login");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     ToastMessage("error", "Something went wrong!");
+    //     console.log(err);
+    //   });
   };
 
   const dispatchFavouriteList = (customerID) => {

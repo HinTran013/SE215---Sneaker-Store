@@ -36,7 +36,7 @@ function LeftSideInfo({ account, setAccount }) {
             width="64px"
           />
         </div>
-        <div className={style.username}>Xin chao, Full Name</div>
+        <div className={style.username}>Xin chao, Tran Thanh Hien</div>
       </div>
       <div
         id="account"

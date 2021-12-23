@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../features/customerSlice";
 import ToastMessage from "../ToastMessage/ToastMessage";
 
-function ModalAccount() {
+function ModalAccount({ isLogin, setLogin }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const onHover = () => {
@@ -28,7 +28,8 @@ function ModalAccount() {
   };
 
   function handleLogout() {
-    dispatch(logout());
+    //dispatch(logout());
+    setLogin(!isLogin);
     history.push("/");
     ToastMessage("success", "logout successfully!");
   }

@@ -14,10 +14,10 @@ function MainPartInfo() {
   console.log(customerState);
 
   // const [selectedDate, setSelectedDate] = useState(null);
-  const [inputName, setInputName] = useState(customerState.name);
-  const [inputPhoneNumber, setInputPhoneNumber] = useState(customerState.phone);
-  const [inputAddress, setInputAddress] = useState(customerState.address);
-  const [inputGender, setInputGender] = useState(customerState.gender);
+  const [inputName, setInputName] = useState("Tran Thanh Hien");
+  const [inputPhoneNumber, setInputPhoneNumber] = useState("0123456789");
+  const [inputAddress, setInputAddress] = useState("Tp Ho Chi Minh");
+  const [inputGender, setInputGender] = useState("Nam");
 
   function handleNameChange(e) {
     setInputName(e.target.value);

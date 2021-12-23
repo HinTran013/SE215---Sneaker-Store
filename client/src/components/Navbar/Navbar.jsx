@@ -27,9 +27,10 @@ function Navbar() {
   const [inputSearch, setInputSearch] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [isLogin, setLogin] = useState(false);
   const customerState = useSelector(selectCustomer);
 
-  const isLoggedIn = customerState != null;
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -118,7 +119,7 @@ function Navbar() {
     );
 
     history.push(navigationBrand);
-    
+
     setNavbarMobile(false)
   }
 
@@ -244,8 +245,8 @@ function Navbar() {
             <i className="far fa-shopping-cart cart-btn"></i>
           </Link>
           <div className="header__btn-login">
-            {isLoggedIn ? (
-              <ModalAccount />
+            {isLogin ? (
+              <ModalAccount isLogin={isLogin} setLogin={setLogin} />
             ) : (
               <i className="far fa-user" onClick={() => setModalIsOpen(true)} />
             )}
@@ -254,10 +255,10 @@ function Navbar() {
               overlayClassName="ModalReact__Overlay"
               isOpen={modalIsOpen}
               onRequestClose={() => setModalIsOpen(false)}
-              // onAfterOpen={() => { document.body.style.overflow = 'hidden' }}
-              // onAfterClose={() => { document.body.style.overflow = 'visible' }}
+            // onAfterOpen={() => { document.body.style.overflow = 'hidden' }}
+            // onAfterClose={() => { document.body.style.overflow = 'visible' }}
             >
-              <UserForm handleOpen={handleOpenModal}></UserForm>
+              <UserForm handleOpen={handleOpenModal} isLogin={isLogin} setLogin={setLogin}></UserForm>
               <a
                 href="javascript:void(0)"
                 className="close_btn"
