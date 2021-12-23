@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import styleCartTotal from "./CartTotal.module.css";
 import styleCartInfo from "./CartCustomerInfo.module.css";
 import styleSection from "./CartSection.module.css";
+import { CartItem } from "./CartTableData";
 
 import checked from "../../assets/icons/checked.png";
 import emptycart from "../../assets/images/cart/emptycart.png";
@@ -141,45 +142,51 @@ const CartSection = () => {
       return;
     }
 
+    ToastMessage("success", "Checkout successfully!");
+    openModal();
+
     // if user logged in, checkout from database
     // else create a new bill in database with customer is anonymous
-    if (customer) {
-      await checkout(customer.id, totalPrice).then((res) => {
-        ToastMessage("success", "Checkout successfully!");
-        getCartListDatabase();
-        openModal();
-        dispatch(clearCartList());
-      });
-    } else {
-      createCart("anonymous").then((res) => {
-        cartList.map((item) => {
-          addToCart(
-            "anonymous",
-            item.id,
-            item.name,
-            item.brand,
-            item.price,
-            item.size,
-            item.color,
-            item.salePercent,
-            item.quantity,
-            item.image
-          );
-        });
+    // if (customer)
+    // {
+    //   await checkout(customer.id, totalPrice).then((res) =>
+    //   {
+    //     ToastMessage("success", "Checkout successfully!");
+    //     getCartListDatabase();
+    //     openModal();
+    //     dispatch(clearCartList());
+    //   });
+    // }
+    // else {
+    //   createCart("anonymous").then((res) => {
+    //     cartList.map((item) => {
+    //       addToCart(
+    //         "anonymous",
+    //         item.id,
+    //         item.name,
+    //         item.brand,
+    //         item.price,
+    //         item.size,
+    //         item.color,
+    //         item.salePercent,
+    //         item.quantity,
+    //         item.image
+    //       );
+    //     });
 
-        setTimeout(() => {
-          checkout("anonymous", totalPrice).then((res) => {
-            ToastMessage("success", "Checkout successfully!");
+    //     setTimeout(() => {
+    //       checkout("anonymous", totalPrice).then((res) => {
+    //         ToastMessage("success", "Checkout successfully!");
 
-            // clear cart in local storage
-            sessionStorage.setItem("cart", JSON.stringify([]));
-            getCartListLocal();
-            openModal();
-            dispatch(clearCartList());
-          });
-        }, 0);
-      });
-    }
+    //         // clear cart in local storage
+    //         sessionStorage.setItem("cart", JSON.stringify([]));
+    //         getCartListLocal();
+    //         openModal();
+    //         dispatch(clearCartList());
+    //       });
+    //     }, 0);
+    //   });
+    // }
   };
 
   const openModal = () => {
@@ -245,14 +252,14 @@ const CartSection = () => {
             </thead>
 
             <tbody className={styleCartTable.trProduct}>
-              {cartList.map((item) => {
+              {CartItem.map((item) => {
                 return (
                   <tr>
                     <th>
                       <div className={styleCartTable.mainInfo}>
                         <img
                           id={styleCartTable.imgProduct}
-                          src={item.image}
+                          src={item.thumbnail}
                           alt=""
                         />
                         <div className={styleCartTable.nameProduct}>
@@ -321,11 +328,10 @@ const CartSection = () => {
                       </div>
                     </th>
                     <th className={styleCartTable.discount}>
-                      {item.salePercent}
+                      {item.discount}
                     </th>
                     <th className={styleCartTable.amount}>
-                      {(item.price - (item.price * item.salePercent) / 100) *
-                        item.quantity}
+                      {(item.price - (item.price * item.discount) / 100) * item.quantity}
                     </th>
                     <th className={styleCartTable.delete}>
                       <img
@@ -398,11 +404,11 @@ const CartSection = () => {
             <div className={styleCartTotal.divTotal}>
               <div className={styleCartTotal.totals}>
                 <p>Subtotals: </p>
-                <p>{subTotalPrice} USD</p>
+                <p>2460 USD</p>
               </div>
               <div className={styleCartTotal.totals}>
                 <p>Totals: </p>
-                <p>{totalPrice} USD</p>
+                <p>2242 USD</p>
               </div>
               <div className={styleCartTotal.checked}>
                 <img src={checked} alt="" />
