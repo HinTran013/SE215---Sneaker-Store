@@ -1,7 +1,10 @@
 .container {
   width: 100%;
   padding-top: 50px;
-
+  display: flex;
+  flex-direction: column;
+}
+.container_display_chose {
   display: flex;
   flex-direction: column;
 }
@@ -18,12 +21,15 @@
 .symbol {
   font-size: 24px;
   display: table-cell;
+  padding-top: 5px;
 }
 .title {
   display: table-cell;
   vertical-align: middle;
   font-size: 18px;
   padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .container div:hover {
   cursor: pointer;
@@ -35,13 +41,18 @@
 @media (max-width: 900px) {
   .container {
     padding: 10px;
-    
+  }
+  .container_display_chose {
+    display: flex;
+    flex-direction: row;
+  }
+  .title {
+    padding-right: 50px;
   }
 }
 
 @media (max-width: 600px) {
   .container {
     display: flex;
-    flex-direction: column;
   }
 }

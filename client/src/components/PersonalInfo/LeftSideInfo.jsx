@@ -38,6 +38,7 @@ function LeftSideInfo({ account, setAccount }) {
         </div>
         <div className={style.username}>Xin chao, Tran Thanh Hien</div>
       </div>
+      <div className={style.container_display_chose}>
       <div
         id="account"
         style={{ display: "inline-block", margin: "20px 0 0 20px" }}
@@ -56,6 +57,7 @@ function LeftSideInfo({ account, setAccount }) {
         <i className={`${style.symbol} fas fa-shopping-cart`}></i>
         <div className={style.title}>Billing History</div>
       </div>
+    </div>
     </div>
   );
 }

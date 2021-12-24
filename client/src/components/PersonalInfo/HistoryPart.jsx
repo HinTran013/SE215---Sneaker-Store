@@ -9,24 +9,22 @@ import HistorySection from "./HistorySection";
 function HistoryPart() {
 
   const [products, setProducts] = useState([]);
+  const customerState = useSelector(selectCustomer);
 
   useEffect(() => {
-    // getHistory(`http://localhost:3001/cart/history?id=${customerID}`).then(
-    //   (res) => {
-    //     // setProductList(res.products);
-    //     // setTotalPage(res.totalPage);
-    //     // setTotalProduct(res.totalProducts);
+    getHistory(`http://localhost:3001/cart/history?id=${customerState.ID}`).then(
+      (res) => {
 
-    //     const listCarts = res.doneCarts;
-    //     let productDoneList = [];
+        const listCarts = res.doneCarts;
+        let productDoneList = [];
 
-    //     for (let i = 0; i < listCarts.length; i++) {
-    //       productDoneList = productDoneList.concat(listCarts[i].products);
-    //     }
+        for (let i = 0; i < listCarts.length; i++) {
+          productDoneList = productDoneList.concat(listCarts[i].products);
+        }
 
-    //     setProducts(productDoneList);
-    //   }
-    // );
+        setProducts(productDoneList);
+      }
+    );
   }, []);
 
   console.log("products: ", products);
