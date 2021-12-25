@@ -3,6 +3,7 @@
   padding-top: 50px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 2;
 }
 .container_display_chose {
   display: flex;
@@ -54,5 +55,9 @@
 @media (max-width: 600px) {
   .container {
     display: flex;
+  }
+  .container_display_chose {
+    display: flex;
+    flex-direction: column;
   }
 }

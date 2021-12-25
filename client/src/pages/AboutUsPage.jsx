@@ -50,10 +50,10 @@ function AboutUsPage() {
         <div className={style.team_member}>
           <div className={style.team_member_card}>
             <div className={style.team_member_img}>
-              <img src={sang} className={style.team_member_image}></img>
+              <img src={hien} className={style.team_member_image}></img>
             </div>
             <div className={style.team_member_info}>
-              <p className={style.team_name}>Lưu Ngọc Sáng</p>
+              <p className={style.team_name}>Lê Khải Hoàn</p>
             </div>
           </div>
           <div className={style.team_member_card}>
@@ -62,6 +62,14 @@ function AboutUsPage() {
             </div>
             <div className={style.team_member_info}>
               <p className={style.team_name}>Phạm Hớn Tuyền</p>
+            </div>
+          </div>
+          <div className={style.team_member_card}>
+            <div className={style.team_member_img}>
+              <img src={hien} className={style.team_member_image}></img>
+            </div>
+            <div className={style.team_member_info}>
+              <p className={style.team_name}>Phạm Gia Bảo</p>
             </div>
           </div>
           <div className={style.team_member_card}>

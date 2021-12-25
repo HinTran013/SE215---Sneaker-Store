@@ -29,7 +29,7 @@ const HistorySection = ({ historyList }) => {
                       <div className={styleCartTable.mainInfo}>
                         <img
                           id={styleCartTable.imgProduct}
-                          src={item.image}
+                          src={item.thumbnail}
                           alt=""
                         />
                         <div className={styleCartTable.nameProduct}>
@@ -56,10 +56,10 @@ const HistorySection = ({ historyList }) => {
                       </div>
                     </th>
                     <th className={styleCartTable.discount}>
-                      {item.salePercent}
+                      {15}
                     </th>
                     <th className={styleCartTable.amount}>
-                      {(item.price - (item.price * item.salePercent) / 100) *
+                      {(item.price - (item.price * 15) / 100) *
                         item.quantity}
                     </th>
                     <th className={styleCartTable.delete}></th>
